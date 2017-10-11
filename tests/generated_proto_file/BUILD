@@ -2,6 +2,7 @@ package(default_visibility = ["//visibility:public"])
 
 load("//cpp:rules.bzl", "cpp_proto_library")
 load("//go:rules.bzl", "go_proto_library")
+load("//java:rules.bzl", "java_proto_library")
 
 genrule(
      name = "copy_file",
@@ -30,5 +31,16 @@ go_proto_library(
 go_proto_library(
    name = "go_copy_library",
    protos = ["copy.proto"],
+   with_grpc = True,
+)
+
+java_proto_library(
+   name = "java_default_library",
+   protos = ["simple.proto"],
+)
+
+java_proto_library(
+   name = "java_copy_library",
+   protos = ["copy.proto"],   
    with_grpc = True,
 )
