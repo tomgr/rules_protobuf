@@ -10,9 +10,10 @@ def proto_repositories(excludes = [],
                          "protobuf",
                          "protobuf_clib",
                          "protocol_compiler",
+                         "protobuf_headers",
                        ],
                        overrides = {},
-                       strict = True,
+                       strict = False,
                        verbose = 0):
   return require(
     keys = protobuf_requires + lang_requires,

@@ -21,7 +21,7 @@ the main bazel repository.  This is a moving target.  The main goals
 of this project are to:
 
 1. Provide `protoc`, the protocol buffer compiler
-   ([v3.4.0](https://github.com/google/protobuf/commit/2807436cd828a526c5c38dd235c0d0d9cdc67b1f)).
+   ([v3.5.1](https://github.com/google/protobuf/commit/1f8b9b202e9a4e467ff0b0f25facb1642727cdf5e69092038f15b37c75b99e45)).
 
 2. Provide the language-specific plugins.
 
@@ -38,15 +38,15 @@ of this project are to:
 
 | Language                     | Compile <sup>1</sup>  | Build <sup>2</sup> | gRPC <sup>3</sup> |
 | ---------------------------: | -----------: | --------: | -------- |
-| [C++](cpp)                   | [cc_proto_compile](cpp#cc_proto_compile) | [cc_proto_library](cpp#cc_proto_library) [v3.4.0](https://github.com/grpc/grpc/releases/tag/v1.6.1) | [v1.6.1](https://github.com/grpc/grpc/releases/tag/v1.6.1) |
+| [C++](cpp)                   | [cc_proto_compile](cpp#cc_proto_compile) | [cc_proto_library](cpp#cc_proto_library) [v3.5.1](https://github.com/google/protobuf/releases/tag/v3.5.1) | [v1.10.1](https://github.com/grpc/grpc/releases/tag/v1.10.1) |
 | [C#](csharp)                 | [csharp_proto_compile](csharp#csharp_proto_compile) | [csharp_proto_library](csharp#csharp_proto_library) | [1.0.0](https://www.nuget.org/packages/Grpc/) |
 | [Closure](closure)           | [closure_proto_compile](closure#closure_proto_compile) | [closure_proto_library](closure#closure_proto_library)          |  |
 | [Go](go)                     | [go_proto_compile](go#go_proto_compile) | [go_proto_library](go#go_proto_library) | [v1.6.0](https://github.com/grpc/grpc-go/releases/tag/v1.6.0) |
-| [Go (gogo)](gogo)            | [gogo_proto_compile](gogo#gogo_proto_compile) | [gogo_proto_library](gogo#gogo_proto_library) | [fb8a35](https://github.com/gogo/protobuf/commit/fb8a359905af6e2b6517cccda0ba25915322ee88) |
+| [Go (gogo)](gogo)            | [gogo_proto_compile](gogo#gogo_proto_compile) | [gogo_proto_library](gogo#gogo_proto_library) | [Nov 2017](https://github.com/gogo/protobuf/commit/616a82ed12d78d24d4839363e8f3c5d3f20627cf) |
 | [gRPC gateway](grpc_gateway) | [grpc_gateway_proto_compile](grpc_gateway#grpc_gateway_proto_compile)<br/>[grpc_gateway_swagger_compile](grpc_gateway#grpc_gateway_swagger_compile)   | [grpc_gateway_proto_library](grpc_gateway#grpc_gateway_proto_library)<br/>[grpc_gateway_binary](grpc_gateway#grpc_gateway_binary) | [v1.2.2+ (f2862b)](https://github.com/grpc-ecosystem/grpc-gateway/commit/f2862b476edcef83412c7af8687c9cd8e4097c0f) |
-| [Java](java)                 | [java_proto_compile](java#java_proto_compile) | [java_proto_library](java#java_proto_library) | [v1.7.0](https://github.com/grpc/grpc-java/releases/tag/v1.7.0) |
-| [Node](node)                 | [node_proto_compile](node#node_proto_compile) | [node_proto_library](node#node_proto_library)          | [1.6.0](https://www.npmjs.com/package/grpc) |
-| [Objective-C](objc) | [objc_proto_compile](objc#objc_proto_compile) | [objc_proto_library](objc#objc_proto_library) <sup>4</sup> | [v1.6.1](https://github.com/grpc/grpc/commit/f5600e99be0fdcada4b3039c0f656a305264884a) |
+| [Java](java)                 | [java_proto_compile](java#java_proto_compile) | [java_proto_library](java#java_proto_library) | [v1.9.0](https://github.com/grpc/grpc-java/releases/tag/v1.9.0) |
+| [Node](node)                 | [node_proto_compile](node#node_proto_compile) | [node_proto_library](node#node_proto_library)          | [1.10.1](https://www.npmjs.com/package/grpc) |
+| [Objective-C](objc) | [objc_proto_compile](objc#objc_proto_compile) | [objc_proto_library](objc#objc_proto_library) <sup>4</sup> | [v1.10.1](https://github.com/grpc/grpc/releases/v1.10.1) |
 | [Python](python)             | [py_proto_compile](python#py_proto_compile)         | [py_proto_library](python#py_proto_library)          | [v1.6.1](https://github.com/grpc/grpc/commit/f5600e99be0fdcada4b3039c0f656a305264884a) |
 | [Ruby](ruby)                 | [ruby_proto_compile](ruby#ruby_proto_compile)          |           | [v1.6.1](https://github.com/grpc/grpc/commit/f5600e99be0fdcada4b3039c0f656a305264884a) |
 | Custom [proto_language](protobuf#proto_language) | [proto_compile](protobuf#proto_compile) | |  |
@@ -73,15 +73,7 @@ of this project are to:
 If you have not already installed `bazel` on your workstation, follow
 the [bazel instructions][bazel-install].
 
-**Bazel 0.5.2 or above is required for go support.  Bazel 0.5.3 is
-  [incompatible](https://github.com/bazelbuild/bazel/issues/3622) (but
-  0.5.4 should work).**
-
-> Note about protoc and related tools: bazel and rules_protobuf will
-> download or build-from-source all required dependencies, including
-> the `protoc` tool and required plugins.  If you do already have
-> these tools installed on your workstation, bazel will *not* use
-> them.
+> NOTE: Bazel 0.8.0 or above is required for go support. 
 
 ## 2. Add rules_protobuf your WORKSPACE
 
@@ -92,7 +84,7 @@ language-specific `*_proto_repositories` rule(s):
 git_repository(
   name = "org_pubref_rules_protobuf",
   remote = "https://github.com/pubref/rules_protobuf",
-  tag = "v0.8.1",
+  tag = "v0.8.2",
   #commit = "..." # alternatively, use latest commit on master
 )
 
@@ -169,7 +161,7 @@ $ bazel run java/org/pubref/rules_protobuf/examples/helloworld/client:netty
 
 To load alternate versions of dependencies, pass in a
 [dict][skylark-dict] having the same overall structure of a
-[deps.bzl][protobuf/deps.bzl] file.  Entries having a matching key will
+[deps.bzl](protobuf/deps.bzl) file.  Entries having a matching key will
 override those found in the file.  For example, to load a different
 version of https://github.com/golang/protobuf, provide a different
 commit ID:

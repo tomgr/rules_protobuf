@@ -8,10 +8,10 @@ load("//protobuf:rules.bzl", "github_archive")
 
 github_archive(
     name = "io_bazel_rules_go",
-    commit = "6d900bc95ae678bec5c91031b8e987957d2a7f93",  # post-0.7.0 (includes important cross-compile fixes)
+    commit = "f676870c5caf8df559a51e7aa005d2ece148a03b",  # 0.10.3
     org = "bazelbuild",
     repo = "rules_go",
-    sha256 = "d36baba631b29151434726eb204fa93ce8793b5f8ef96da452f382d77bd95c93",
+    sha256 = "d1740b1a75d3c51f1c37e5a42ed032d113bdf1de35c393c609940af491ab6035",
 )
 
 load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
@@ -24,17 +24,18 @@ go_register_toolchains()
 # closure js_proto_library support requires rules_closure
 # ================================================================
 
+
 github_archive(
     name = "io_bazel_rules_closure",
-    commit = "4af89ef1db659eb41f110df189b67d4cf14073e1",
+    commit = "21b757480a1e3a67f1a25a8f27a404fc751e1477", # 0.6.0
     org = "bazelbuild",
     repo = "rules_closure",
-    sha256 = "f73b1b3974e7639183e1646737d446d73a966ff57f853a896e19bcccc40e9b7b",
+    sha256 = "84687d2bc01fe2a0b45ec906bee87c5d336767e00d8cc8d40236c8804d5d5ced",
 )
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
-closure_repositories()
+closure_repositories(omit_com_google_protobuf=True)
 
 # ================================================================
 # csharp_proto_library support requires rules_dotnet (forked)
@@ -42,10 +43,10 @@ closure_repositories()
 
 github_archive(
     name = "io_bazel_rules_dotnet",
-    commit = "ebc7c1cb61d45bd57042c60b6bfabdfff4979466",
+    commit = "1a6ca96fe05bca83782464453ac4657fb8ed8379",
     org = "bazelbuild",
     repo = "rules_dotnet",
-    sha256 = "b50c4a1133dfa834fab5ff7596e67866f67e252f76649543adca5f0c3fdec140",
+    sha256 = "0f7d7f79bf543fdcce9ffebf422df2f858eae63367869b441d4d1005f279fa1f",
 )
 
 load("@io_bazel_rules_dotnet//dotnet:csharp.bzl", "csharp_repositories")
@@ -59,11 +60,11 @@ csharp_repositories()
 
 github_archive(
     name = "org_pubref_rules_node",
-    # This commit is *not* on master but rather https://github.com/pubref/rules_node/pull/35.
-    commit = "2b4b38dcb76eba98419c932c98bd22fe6e322c9f",
+    # This commit is *not* on master but rather https://github.com/pubref/rules_node/pull/41.
+    commit = "f990afc34168f81b034e642aa0dcb56320ed3988",
     org = "pubref",
     repo = "rules_node",
-    sha256 = "64e30037b931fb01c5c5f2e38477bdd234ba95b51138153c13bec8d156982978",
+    sha256 = "a367add895f201595b618611dcf7bdd7723ffeed88c4dc327e30668d19c9d1e2",
 )
 
 load("@org_pubref_rules_node//node:rules.bzl", "node_repositories", "yarn_modules")
@@ -81,10 +82,10 @@ yarn_modules(
 
 github_archive(
     name = "io_bazel_rules_python",
-    commit = "fa77c9c1118380e066c88b955c90fb3c7353429e",
+    commit = "8b5d0683a7d878b28fffe464779c8a53659fc645",
     org = "bazelbuild",
     repo = "rules_python",
-    sha256 = "7d06126d0d10ea8e63cc7eaf774d9ecebcd9583094ee8e93b0035da659eab5c1",
+    sha256 = "40499c0a9d55f0c5deb245ed24733da805f05aaf6085cb39027ba486faf1d2e1",
 )
 
 load("@io_bazel_rules_python//python:pip.bzl", "pip_repositories", "pip_import")
