@@ -5,7 +5,7 @@ DEPS = {
     "com_google_grpc": {
         "rule": "grpc_archive",
         "url": "https://github.com/grpc/grpc/archive/d8020cb6daa87f1a3bb3b0c299bc081c4a3de1e8.tar.gz", # 1.10.1
-        "sha256": "16f22430210abf92e06626a5a116e114591075e5854ac78f1be8564171658b70",
+        "sha256": "2925dcdea4595a62e439355823984df061e085485d7c2208802ed944ded62b5b",
         "strip_prefix": "grpc-d8020cb6daa87f1a3bb3b0c299bc081c4a3de1e8",
     },
 
