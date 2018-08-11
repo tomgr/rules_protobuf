@@ -4,9 +4,9 @@ DEPS = {
 
     "com_google_grpc": {
         "rule": "grpc_archive",
-        "url": "https://github.com/grpc/grpc/archive/66b9770a8ad326c1ee0dbedc5a8f32a52a604567.tar.gz", # 1.10.1
-        "sha256": "14c1d63217f829f3c23bf039a76c186d0886c5b5c64e7eced44764f0fc564e6a",
-        "strip_prefix": "grpc-66b9770a8ad326c1ee0dbedc5a8f32a52a604567",
+        "url": "https://github.com/grpc/grpc/archive/d8020cb6daa87f1a3bb3b0c299bc081c4a3de1e8.tar.gz", # 1.10.1
+        "sha256": "16f22430210abf92e06626a5a116e114591075e5854ac78f1be8564171658b70",
+        "strip_prefix": "grpc-d8020cb6daa87f1a3bb3b0c299bc081c4a3de1e8",
     },
 
     "boringssl": {
